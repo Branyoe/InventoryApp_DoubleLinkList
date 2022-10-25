@@ -1,0 +1,97 @@
+.bg-blue{
+  background-color: rgb(29, 29, 252);
+}
+
+.left-col{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.history-container{
+  min-height: auto  ;
+  max-height: 180px;
+  padding-right: 5px;
+  overflow: scroll;
+} 
+
+.history-container::-webkit-scrollbar{
+  background-color: transparent;
+  width: .7rem;
+}
+
+.history-container::-webkit-scrollbar-thumb{
+  background: #e9ecef;
+  border-radius: 30px;
+}
+
+#cardsContainer{
+  padding-right: 5px;
+  overflow: scroll;
+  min-height: auto;
+  max-height: 70vh;
+}
+
+
+#cardsContainer::-webkit-scrollbar{
+  background-color: transparent;
+  width: .7rem;
+}
+
+#cardsContainer::-webkit-scrollbar-thumb{
+  background: #e9ecef;
+  border-radius: 30px;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-inline{
+  display: flex;
+}
+
+.card{
+  width: 100%;
+}
+
+.buttonsContainer{
+  display: flex;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.normal{
+  font-weight: normal;
+}
+
+.toast{
+  position: fixed;
+  transform: translate(20px, 75vh);
+}
+
+.filterContainer{
+  display: block;
+  display: flex;
+  justify-content: end;
+}
+
+.filterItm{
+  border-radius: 5px;
+  outline: solid 1px #ced4da;
+}
+
+.filterItm:hover{
+  outline: solid 2px #ced4da;
+}
+
+.filterItmSelected{
+  background: #ced4da;
+}
+
+.toast-body{
+  background-color:  #e9ecef;
+}
