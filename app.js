@@ -151,23 +151,26 @@ function setSaveBtnMode(isUpdate) {
   form.enableCodeInp(true);
 }
 
-// const inventory = new Inventory();
+// // const inventory = new Inventory();
 // let p1 = new Product({code: 1, name:1, quantity: 1,cost: 1});
+// const inventory = new Inventory();
+
 // inventory.add(p1);
-// console.log(inventory.getList);
-// console.log(inventory.getInvertedList);
-// p1 = new Product({code: 2, name:1, quantity: 1,cost: 1});
-// inventory.add(p1);
-// console.log(inventory.getInvertedList);
-// console.log(inventory.search(2));
+// console.log("🚀 ~ file: app.js ~ line 159 ~ inventory.getList", inventory.getList)
+// console.log("🚀 ~ file: app.js ~ line 160 ~ inventory.getInvertedList", inventory.getInvertedList)
+
+// console.log("");
+
 // p1 = new Product({code: 3, name:1, quantity: 1,cost: 1});
 // inventory.add(p1);
-// console.log(inventory.getList);
-// console.log(inventory.getInvertedList);
-// console.log(inventory.delete(2));
-// console.log(inventory.getList);
-// console.log(inventory.getInvertedList);
-// p1 = new Product({code: 10, name:1, quantity: 1,cost: 1});
-// inventory.insert(4, p1)
-// console.log(inventory.getList);
-// console.log(inventory.getInvertedList);
+// console.log("🚀 ~ file: app.js ~ line 159 ~ inventory.getList", inventory.getList)
+// console.log("🚀 ~ file: app.js ~ line 160 ~ inventory.getInvertedList", inventory.getInvertedList)
+
+// console.log("");
+
+
+// p1 = new Product({code: 0, name:3, quantity: 1,cost: 1});
+// inventory.add(p1);
+// console.log("🚀 ~ file: app.js ~ line 159 ~ inventory.getList", inventory.getList)
+// console.log("🚀 ~ file: app.js ~ line 160 ~ inventory.getInvertedList", inventory.getInvertedList)
+

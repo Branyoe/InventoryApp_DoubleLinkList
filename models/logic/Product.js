@@ -1,4 +1,4 @@
-/** Class representing a Product. */
+  /** Class representing a Product. */
 export default class Product {
   //******** Propertys ********
   #code = 0;

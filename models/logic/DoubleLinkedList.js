@@ -1,9 +1,10 @@
 import Node from "./Node.js";
 
-export default class LinkedList {
+export default class DoubleLinkedList {
 
   constructor() {
     this.first = null;
+    this.last = null;
   }
 
   /**
@@ -12,34 +13,42 @@ export default class LinkedList {
    * @param {Node} node - Instancia de Node.
    */
   add(data) {
+    if (!data) throw new Error("data param is empty");
     const node = new Node(data);
     if (!this.first) {
       this.first = node;
-    } else if (!this.first.next) {
-      this.first.next = node;
+      this.last = node;
     } else {
-      this.#getLastNode().next = node;
+      if(this.last === this.first){
+        if(this.first.data.getCode < node.data.getCode){
+          node.prev = this.first;
+          this.first.next = node;
+          this.last = node;
+          return
+        }
+      }
+      let currentNode = this.last;
+      while (node.data.getCode < currentNode?.data?.getCode) {
+        currentNode = currentNode.prev;
+      }
+      if(!currentNode) {
+        node.next = this.first;
+        this.first = node;
+        return
+      }
+      node.next = currentNode.next;
+      node.prev = currentNode;
+      currentNode.next = node;
     }
-  }
-
-  /**
-   * Agrega un Node al inicio de la lista.
-   * @method addFirst
-   * @param {Node} node - Instancia de Node.
-   */
-  addFirst(data) {
-    const newNode = new Node(data);
-    newNode.next = this.first;
-    this.first = newNode;
   }
 
   find(callback) {
     if (!this.first) return
-    function recursiveTraversal(node) {
+    function loop(node) {
       if (callback(node.data)) return node.data;
-      if (node.next) return recursiveTraversal(node.next);
+      if (node.next) return loop(node.next);
     }
-    return recursiveTraversal(this.first);
+    return loop(this.first);
   }
 
   delete(callback) {
@@ -49,20 +58,22 @@ export default class LinkedList {
       return aux.data;
     }
 
-    function recursiveTraversal(node) {
+    function loop(node) {
       if (!node.next) return;
       if (callback(node.next)) {
         let aux = node.next;
         node.next = node.next.next;
         return aux;
       }
-      if (node.next) return recursiveTraversal(node.next);
+      if (node.next) return loop(node.next);
     }
-
-    return recursiveTraversal(this.first)?.data;
+    return loop(this.first)?.data;
   }
 
-  insert(position, data) {
+  /**
+   * todo: eliminar esta función
+   */
+  _insert(position, data) {
     if (position === 1) {
       this.addFirst(data);
       return
@@ -90,7 +101,7 @@ export default class LinkedList {
    * @method shift
    * @returns {Node} Instancia de Node.
    */
-  shift() {
+  _shift() {
     let aux = this.first;
     this.first = this.first.next;
     return aux;
@@ -101,7 +112,7 @@ export default class LinkedList {
    * @method pop
    * @returns {Node} Instancia de Node.
    */
-  pop() {
+  _pop() {
     if (!this.first.next) {
       let aux = this.first;
       this.first = null;
@@ -118,16 +129,16 @@ export default class LinkedList {
     // return aux;
 
     //***Con recursividad */
-    return this.#popRecursion();
-  }
-
-  #popRecursion(nodo = this.first) {
-    if (nodo.next.next != null) {
-      return this.#popRecursion(nodo.next);
+    const loop = (nodo = this.first) => {
+      if (nodo.next.next != null) {
+        return loop(nodo.next);
+      }
+      let aux = nodo.next;
+      nodo.next = null;
+      return aux;
     }
-    let aux = nodo.next;
-    nodo.next = null;
-    return aux;
+
+    return loop();
   }
 
   /**
@@ -167,11 +178,6 @@ export default class LinkedList {
      * que ejecuta la función antes no tiene su next en null hace esto mismo.
      */
     return `${this.#reverseListRecursion(node.next)}\n${node.data.getValueInString}`;
-  }
-
-  #getLastNode(nodo = this.first) {
-    if (nodo.next) return this.#getLastNode(nodo.next);
-    return nodo;
   }
 }
 
